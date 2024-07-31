@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  min-height: 100dvh !important;
+  width: 100dvw !important;
+  overflow: "hidden";
+  background-color: #f3f4f6;
+  color: black;
+}
+
+html,
+body {
+  overscroll-behavior-y: none;
+}
