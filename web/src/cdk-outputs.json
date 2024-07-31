@@ -6,7 +6,7 @@
     "DynamoDBTableName": "TempMonitorStack-TempSnapshotsC4B66C1A-EJBY3Z86QFS2",
     "Region": "us-east-2",
     "IdentityPoolId": "us-east-2:f5340f56-ec9b-4542-b871-34bf97415159",
-    "WebOrigin": "https://master.d3o98ozl8omkp9.amplifyapp.com/",
+    "WebOrigin": "https://master.d23in6369gj32v.amplifyapp.com/",
     "WebOriginLocal": "http://localhost:5173/",
     "TempRecorderApiEndpoint9A28982F": "https://5avlxaccmd.execute-api.us-east-2.amazonaws.com/prod/",
     "TempRecorderApiURL": "https://5avlxaccmd.execute-api.us-east-2.amazonaws.com/prod/"
