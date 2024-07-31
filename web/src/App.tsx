@@ -2,7 +2,6 @@ import {
   withAuthenticator,
   WithAuthenticatorProps,
 } from "@aws-amplify/ui-react";
-import { useEmail } from "./hooks/useEmail";
 import { styled } from "./stitches.config";
 import { Flex } from "./components/Primitives";
 import { Dashboard } from "./Dashboard";
@@ -17,8 +16,8 @@ const AppContainer = styled(Flex, {
   },
 });
 
-function __App({ signOut }: WithAuthenticatorProps) {
-  const email = useEmail();
+function __App({}: WithAuthenticatorProps) {
+  // const email = useEmail();
 
   return (
     <AppContainer>
@@ -27,8 +26,6 @@ function __App({ signOut }: WithAuthenticatorProps) {
   );
 }
 
-export const App = __App;
-
-// export const App = withAuthenticator(__App, {
-//   socialProviders: ["google"],
-// });
+export const App = withAuthenticator(__App, {
+  socialProviders: ["google"],
+});

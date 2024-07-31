@@ -13,8 +13,8 @@ const Card = styled(Col, {
 export const Device = ({
   name,
   latestRecord,
-  tempTrend,
-  humidityTrend,
+  // tempTrend,
+  // humidityTrend,
 }: DeviceStats) => {
   return (
     <Card>
