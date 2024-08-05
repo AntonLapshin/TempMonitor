@@ -3,13 +3,11 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import { readRecentRecordsMock } from "./api/readRecentRecords.mock";
 import { getDeviceStats } from "./tools/getDeviceStats";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { Loader } from "./components/Loader/Loader";
 import { Grid2Cols } from "./components/Primitives";
 import { Device } from "./components/Device";
-import { fetchAuthSession } from "aws-amplify/auth";
 import { readRecentRecords } from "./api/readRecentRecords";
 
 const queryClient = new QueryClient();
