@@ -1,5 +1,7 @@
 import { styled } from "../stitches.config";
+import { adjustTemperature } from "../tools/adjustTemperature";
 import { celsiusToFahrenheit } from "../tools/celsiusToFahrenheit";
+import { fahrenheitToCelsius } from "../tools/fahrenheitToCelsius";
 import { DeviceStats } from "../tools/getDeviceStats";
 import { timeAgo } from "../tools/timeAgo";
 import { Col, Row, Text } from "./Primitives";
@@ -13,9 +15,13 @@ const Card = styled(Col, {
 export const Device = ({
   deviceName,
   latestRecord,
-  // tempTrend,
-  // humidityTrend,
-}: DeviceStats) => {
+}: // tempTrend,
+// humidityTrend,
+DeviceStats) => {
+  const actualTemperatureF = celsiusToFahrenheit(latestRecord.temperature);
+  const adjustedTemperatureF = adjustTemperature(actualTemperatureF);
+  const adjustedTemperatureC = fahrenheitToCelsius(adjustedTemperatureF);
+
   return (
     <Card>
       <Col
@@ -33,10 +39,10 @@ export const Device = ({
           {timeAgo(latestRecord.timestamp)}
         </Text>
         <Text css={{ fontSize: 26, fontWeight: 500 }}>
-          {latestRecord.temperature.toFixed(1)}°C
+          {adjustedTemperatureC.toFixed(1)}°C
         </Text>
         <Text color="subtle" css={{ fontSize: 18 }}>
-          {celsiusToFahrenheit(+latestRecord.temperature).toFixed(1)}°F
+          {adjustedTemperatureF.toFixed(1)}°F
         </Text>
       </Col>
       <Col
