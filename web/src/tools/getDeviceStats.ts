@@ -1,7 +1,7 @@
 import { TempRecord } from "../api/readRecentRecords";
 
 export type DeviceStats = {
-  name: string;
+  deviceName: string;
   latestRecord: TempRecord;
   tempTrend: number; // degrees per minute
   humidityTrend: number; // percentage points per minute
@@ -26,7 +26,7 @@ export const getDeviceStats = (
     // Calculate trends
     const tempTrend =
       timeDiffMinutes > 0
-        ? (latestRecord.temp - oldestRecord.temp) / timeDiffMinutes
+        ? (latestRecord.temperature - oldestRecord.temperature) / timeDiffMinutes
         : 0;
 
     const humidityTrend =
@@ -35,7 +35,7 @@ export const getDeviceStats = (
         : 0;
 
     return {
-      name: latestRecord.name,
+      deviceName: latestRecord.deviceName,
       latestRecord,
       tempTrend,
       humidityTrend,

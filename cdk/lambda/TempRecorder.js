@@ -8,20 +8,20 @@ exports.handler = async (event) => {
   try {
     // Parse the incoming request body
     const body = JSON.parse(event.body);
-    const { userId, name, temp, humidity } = body;
+    const { userId, deviceName, temperature, humidity } = body;
 
     // Validate input
     if (
       !userId ||
-      name === undefined ||
-      temp === undefined ||
+      deviceName === undefined ||
+      temperature === undefined ||
       humidity === undefined
     ) {
       return {
         statusCode: 400,
         headers: getHeaders(),
         body: JSON.stringify({
-          error: "Missing required fields: userId, name, temp, or humidity",
+          error: "Missing required fields: userId, deviceName, temperature, or humidity",
         }),
       };
     }
@@ -29,9 +29,9 @@ exports.handler = async (event) => {
     // Prepare the item to be inserted into DynamoDB
     const item = {
       userId: userId,
-      name,
+      deviceName,
       timestamp: Date.now(), // Use current timestamp as sort key
-      temp,
+      temperature,
       humidity,
     };
 

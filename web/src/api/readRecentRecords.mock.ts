@@ -25,9 +25,9 @@ export const readRecentRecordsMock = async (): Promise<TempRecord[][]> => {
 
     while (currentTime <= now) {
       deviceRecords.push({
-        name: deviceName,
+        deviceName,
         timestamp: currentTime,
-        temp: getRandomNumber(18, 28), // Temperature between 18°C and 28°C
+        temperature: getRandomNumber(18, 28), // Temperature between 18°C and 28°C
         humidity: getRandomNumber(30, 70), // Humidity between 30% and 70%
       });
 

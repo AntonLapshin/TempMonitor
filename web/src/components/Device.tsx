@@ -11,7 +11,7 @@ const Card = styled(Col, {
 });
 
 export const Device = ({
-  name,
+  deviceName,
   latestRecord,
   // tempTrend,
   // humidityTrend,
@@ -27,16 +27,16 @@ export const Device = ({
         }}
       >
         <Text color="subtle" css={{ fontSize: 12 }}>
-          {name}
+          {deviceName}
         </Text>
         <Text color="subtle" css={{ fontSize: 10 }}>
           {timeAgo(latestRecord.timestamp)}
         </Text>
         <Text css={{ fontSize: 26, fontWeight: 500 }}>
-          {latestRecord.temp.toFixed(1)}°C
+          {latestRecord.temperature.toFixed(1)}°C
         </Text>
         <Text color="subtle" css={{ fontSize: 18 }}>
-          {celsiusToFahrenheit(+latestRecord.temp).toFixed(1)}°F
+          {celsiusToFahrenheit(+latestRecord.temperature).toFixed(1)}°F
         </Text>
       </Col>
       <Col

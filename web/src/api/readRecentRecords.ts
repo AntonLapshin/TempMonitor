@@ -4,9 +4,9 @@ import { fetchAuthSession } from "aws-amplify/auth";
 import CdkOutputs from "../cdk-outputs.json";
 
 export type TempRecord = {
-  name: string; // device name
+  deviceName: string;
   timestamp: number;
-  temp: number;
+  temperature: number;
   humidity: number;
 };
 
@@ -34,7 +34,7 @@ export const readRecentRecords = async (): Promise<TempRecord[][]> => {
       ":userId": identityId,
       ":timestamp": pastInterval,
     },
-    ProjectionExpression: "name, #timestamp, temp, humidity",
+    ProjectionExpression: "deviceName, #timestamp, temperature, humidity",
     ScanIndexForward: false, // to get the most recent records first
   });
 
@@ -45,10 +45,10 @@ export const readRecentRecords = async (): Promise<TempRecord[][]> => {
   // Group records by device name
   const groupedRecords: { [key: string]: TempRecord[] } = {};
   records.forEach((record) => {
-    if (!groupedRecords[record.name]) {
-      groupedRecords[record.name] = [];
+    if (!groupedRecords[record.deviceName]) {
+      groupedRecords[record.deviceName] = [];
     }
-    groupedRecords[record.name].push(record);
+    groupedRecords[record.deviceName].push(record);
   });
 
   // Convert the grouped records object to a 2D array

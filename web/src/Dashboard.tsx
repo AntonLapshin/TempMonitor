@@ -5,10 +5,12 @@ import {
 } from "@tanstack/react-query";
 import { readRecentRecordsMock } from "./api/readRecentRecords.mock";
 import { getDeviceStats } from "./tools/getDeviceStats";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Loader } from "./components/Loader/Loader";
 import { Grid2Cols } from "./components/Primitives";
 import { Device } from "./components/Device";
+import { fetchAuthSession } from "aws-amplify/auth";
+import { readRecentRecords } from "./api/readRecentRecords";
 
 const queryClient = new QueryClient();
 
@@ -20,14 +22,21 @@ export const Dashboard = () => {
   );
 };
 
-const Monitor = () => {
-  //   const queryClient = useQueryClient();
+const UPDATE_INTERVAL = 60 * 1000;
 
-  // Queries
+const Monitor = () => {
+//   useEffect(() => {
+//     (async () => {
+//       const session = await fetchAuthSession();
+//       const { credentials, identityId } = session;
+//       console.debug({ identityId });
+//     })();
+//   }, []);
+  
   const { data, isLoading } = useQuery({
     queryKey: ["devices"],
-    queryFn: readRecentRecordsMock,
-    staleTime: 60 * 1000,
+    queryFn: readRecentRecords,
+    staleTime: UPDATE_INTERVAL,
   });
 
   const stats = useMemo(() => {
@@ -39,9 +48,9 @@ const Monitor = () => {
   }
 
   return (
-    <Grid2Cols css={{ gap: "1rem", width: '100%' }}>
+    <Grid2Cols css={{ gap: "1rem", width: "100%" }}>
       {stats.map((deviceStats) => {
-        return <Device key={deviceStats.name} {...deviceStats}></Device>;
+        return <Device key={deviceStats.deviceName} {...deviceStats}></Device>;
       })}
     </Grid2Cols>
   );
